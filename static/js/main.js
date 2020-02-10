@@ -203,6 +203,8 @@
 	};
 	contentWayPoint();
 
+
+
   var slideImage = function() {
     $(".slide-image").each(function () {
       var bg = $(this).data("bg");

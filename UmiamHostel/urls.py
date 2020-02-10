@@ -24,6 +24,7 @@ urlpatterns = [
     re_path('^$', RedirectView.as_view(pattern_name='umiam:index', permanent=False)),
     re_path('^admin/', admin.site.urls),
     re_path('^umiam/', include(urls), name='umiam'),
+    re_path('^summernote/', include('django_summernote.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

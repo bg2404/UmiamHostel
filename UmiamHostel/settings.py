@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'umiam.apps.UmiamConfig',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,5 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

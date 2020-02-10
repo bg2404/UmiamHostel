@@ -12,8 +12,24 @@ def is_iitg_email(value):
         raise ValidationError('Enter a Valid IITG Email Address')
 
 
-class HMCMember(models.Model):
+class Facility(models.Model):
+    facility_name = models.CharField(max_length=64)
+    details = models.CharField(blank=True, max_length=1024)
+    pic = models.ImageField()
 
+    def __str__(self):
+        return self.facility_name
+
+
+class HMC(models.Model):
+    year = models.IntegerField()
+
+    def __str__(self):
+        return "HMC {}".format(self.year)
+
+
+class HMCMember(models.Model):
+    hmc = models.ForeignKey(HMC, on_delete=models.CASCADE, related_name='hmc_members')
     GENSEC = 'General Secretary'
     WELFY = 'Welfare Secretary'
     MESSI = 'Mess Convener'
@@ -39,7 +55,6 @@ class HMCMember(models.Model):
         (ASS_WARDEN, ASS_WARDEN),
         (CARETAKER, CARETAKER)
     )
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField()
     designation = models.CharField(max_length=50, choices=DESIGNATION_CHOICES)
@@ -51,7 +66,7 @@ class HMCMember(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=17)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name + " - " + self.designation
+        return self.user.first_name + " " + self.user.last_name
 
 
 class Achievement(models.Model):
@@ -61,6 +76,15 @@ class Achievement(models.Model):
 
     def __str__(self):
         return self.achievement_name
+
+
+class GalleryOverview(models.Model):
+    event_name = models.CharField(max_length=256)
+    event_description = models.CharField(max_length=1024, blank=True)
+    event_pic = models.ImageField()
+
+    def __str__(self):
+        return self.event_name
 
 
 class Gallery(models.Model):
