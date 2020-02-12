@@ -55,7 +55,7 @@ class HMCMember(models.Model):
         (ASS_WARDEN, ASS_WARDEN),
         (CARETAKER, CARETAKER)
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='hmc_member')
     profile_pic = models.ImageField()
     designation = models.CharField(max_length=50, choices=DESIGNATION_CHOICES)
     iitg_email_validator = EmailValidator(whitelist=['iitg.ac.in'])

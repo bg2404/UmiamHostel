@@ -1,3 +1,0 @@
-Django
-pillow
-django-summernote
